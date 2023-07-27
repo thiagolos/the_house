@@ -24,6 +24,8 @@
     "@types/koa-bodyparser": "^4.3.10",
     "@types/koa-router": "^7.4.4",
     "@types/node": "^20.4.5",
-    "ts-node": "^10.9.1"
+    "@types/uuid": "^9.0.2",
+    "ts-node": "^10.9.1",
+    "uuid": "^9.0.0"
   }
 }

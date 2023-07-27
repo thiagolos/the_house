@@ -29,3 +29,7 @@ export type Artist = {
   name: string;
   spotify_id: string;
 }
+
+export type External_Urls = {
+  "spotify": string
+}
