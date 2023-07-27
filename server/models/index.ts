@@ -1,7 +1,7 @@
-import { sequelize } from '../db';
+import sequelize from '../db';
 import { DataTypes, literal } from 'sequelize';
 
-export const Spotify = sequelize.define("spotify_data", {
+const Spotify = sequelize.define("spotify_data", {
   id: {
     type: DataTypes.UUID,
     defaultValue: literal('gen_random_uuid()'),
@@ -28,7 +28,7 @@ export const Spotify = sequelize.define("spotify_data", {
     allowNull: false
   },
   external_urls: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.JSON,
     allowNull: false
   },
   href: {
@@ -45,7 +45,7 @@ export const Spotify = sequelize.define("spotify_data", {
   }
 });
 
-export const Artist = sequelize.define("artists", {
+const Artist = sequelize.define("artists", {
   id: {
     type: DataTypes.UUID,
     defaultValue: literal('gen_random_uuid()'),
@@ -63,3 +63,5 @@ export const Artist = sequelize.define("artists", {
 
 Artist.hasMany(Spotify);
 Spotify.belongsTo(Artist);
+
+export default { Spotify, Artist };

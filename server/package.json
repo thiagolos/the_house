@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +16,14 @@
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^12.0.0",
     "pg": "^8.11.1",
-    "sequelize": "^6.32.1"
+    "sequelize": "^6.32.1",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.7",
+    "@types/koa__cors": "^4.0.0",
+    "@types/koa-bodyparser": "^4.3.10",
+    "@types/koa-router": "^7.4.4",
+    "@types/node": "^20.4.5"
   }
 }

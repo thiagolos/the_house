@@ -2,7 +2,7 @@ import Koa from 'koa';
 import cors from '@koa/cors';
 import bodyParser from 'koa-bodyparser';
 
-// import database from './models/index.ts'
+import database from './db'
 // import router from './router.ts'
 
 const app = new Koa();
