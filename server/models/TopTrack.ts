@@ -19,11 +19,11 @@ export class TopTrack extends Model<
   InferAttributes<TopTrack, {omit: TopTrackAssociations}>,
   InferCreationAttributes<TopTrack, {omit: TopTrackAssociations}>
 > {
-  declare id: CreationOptional<string>
+  declare id: string
   declare name: string
-  declare releaseDate: string
+  declare release_date: string
   declare popularity: number
-  declare previewUrl: string
+  declare preview_url: string
   declare artists: string[]
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
@@ -48,7 +48,7 @@ export class TopTrack extends Model<
         type: DataTypes.STRING,
         allowNull: false
       },
-      releaseDate: {
+      release_date: {
         type: DataTypes.DATEONLY,
         allowNull: false
       },
@@ -56,7 +56,7 @@ export class TopTrack extends Model<
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      previewUrl: {
+      preview_url: {
         type: DataTypes.STRING,
         allowNull: false
       },
