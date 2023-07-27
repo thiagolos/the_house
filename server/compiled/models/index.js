@@ -27,10 +27,6 @@ const Spotify = db_1.default.define("spotify_data", {
         type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.JSON),
         allowNull: false
     },
-    top_tracks: {
-        type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.JSON),
-        allowNull: false
-    },
     external_urls: {
         type: sequelize_1.DataTypes.JSON,
         allowNull: false
@@ -63,6 +59,19 @@ const Artist = db_1.default.define("artists", {
         allowNull: false
     }
 });
+const Top_Tracks = db_1.default.define("top_tracks", {
+    id: {
+        type: sequelize_1.DataTypes.UUID,
+        defaultValue: (0, sequelize_1.literal)('gen_random_uuid()'),
+        primaryKey: true,
+    },
+    track_list: {
+        type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.JSON),
+        allowNull: false
+    },
+});
 Artist.hasMany(Spotify);
 Spotify.belongsTo(Artist);
-exports.default = { Spotify, Artist };
+Artist.hasMany(Top_Tracks);
+Top_Tracks.belongsTo(Artist);
+exports.default = { Spotify, Artist, Top_Tracks };

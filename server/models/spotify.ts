@@ -1,5 +1,4 @@
-import Spotify from './index';
-import { Image, Track, SpotifyData } from '../ServerTypes';
+import databaseModels from './index';
 
 const baseUrl:string = "https://api.spotify.com/v1/artists";
 
@@ -19,14 +18,25 @@ const fetchSpotifyData = async () => {
   }
 };
 
-// const spotifyData = fetchSpotifyData().then(data => console.log(data));
+const postSpotifyData = async () => {
+  try {
+    const spotifyApiData = await fetchSpotifyData();
 
-
-// const postSpotifyData = async () => {
-//   try {
-//     const response = await Spotify.create()
-//   } catch (err) {
-//     console.log(err);
-//     return err;
-//   }
-// }
+    for (const element of spotifyApiData) {
+      databaseModels.Spotify.create({
+        id: element.id,
+        popularity: element.popularity,
+        followers: element.followers,
+        genres: element.genres,
+        images: element.images,
+        external_urls: element.external_urls,
+        href: element.href,
+        type: element.type,
+        uri: element.uri
+      })
+    }
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+}

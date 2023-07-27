@@ -8,7 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = __importDefault(require("./index"));
 const baseUrl = "https://api.spotify.com/v1/artists";
 const fetchSpotifyData = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -26,12 +30,25 @@ const fetchSpotifyData = () => __awaiter(void 0, void 0, void 0, function* () {
         return err;
     }
 });
-// const spotifyData = fetchSpotifyData().then(data => console.log(data));
-// const postSpotifyData = async () => {
-//   try {
-//     const response = await Spotify.create()
-//   } catch (err) {
-//     console.log(err);
-//     return err;
-//   }
-// }
+const postSpotifyData = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const spotifyApiData = yield fetchSpotifyData();
+        for (const element of spotifyApiData) {
+            index_1.default.Spotify.create({
+                id: element.id,
+                popularity: element.popularity,
+                followers: element.followers,
+                genres: element.genres,
+                images: element.images,
+                external_urls: element.external_urls,
+                href: element.href,
+                type: element.type,
+                uri: element.uri
+            });
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return err;
+    }
+});
