@@ -1,4 +1,3 @@
-import { Sequelize } from "sequelize";
 import models  from "../models/index";
 
 async function getArtistsAndSpotify (ctx:any) {
@@ -21,9 +20,12 @@ async function getArtistTopTracks (ctx:any) {
   try {
     const response = await models.TopTrack.findAll({
       where: {
-        spotify_id: ctx.params.artistId
+        spotify_id: ctx.params.id
       }
     });
+    ctx.status = 200;
+    ctx.body = response;
+    return response;
   } catch (err) {
     ctx.status = 500;
     ctx.body = err;
@@ -31,6 +33,7 @@ async function getArtistTopTracks (ctx:any) {
     return err;
   }
 }
+
 export default { 
   getArtistsAndSpotify,
   getArtistTopTracks
