@@ -11,7 +11,9 @@ import {
   NonAttribute,
   Sequelize
 } from 'sequelize'
+
 import type { Artist } from './Artist'
+import type { Image } from '../Types'
 
 type TopTrackAssociations = 'artist'
 
@@ -23,10 +25,11 @@ export class TopTrack extends Model<
   declare name: string
   declare release_date: string
   declare popularity: number
-  declare preview_url: string
+  declare preview_url?: string
   declare artists: string[]
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
+  declare images: Image[]
 
   // TopTrack belongsTo Artist
   declare artist?: NonAttribute<Artist>
@@ -58,10 +61,14 @@ export class TopTrack extends Model<
       },
       preview_url: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       artists: {
         type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false
+      },
+      images: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false
       },
       createdAt: {

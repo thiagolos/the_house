@@ -14,6 +14,7 @@ import {
 
 import { External_Urls } from '../Types'
 import type { Artist } from './Artist'
+import type { Image } from '../Types'
 
 type SpotifyDatumAssociations = 'artist'
 
@@ -62,7 +63,7 @@ export class SpotifyDatum extends Model<
         allowNull: false
       },
       images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false
       },
       externalUrls: {
