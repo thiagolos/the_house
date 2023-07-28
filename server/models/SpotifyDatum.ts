@@ -23,6 +23,7 @@ export class SpotifyDatum extends Model<
   InferCreationAttributes<SpotifyDatum, {omit: SpotifyDatumAssociations}>
 > {
   declare id: string
+  declare spotify_id: string
   declare popularity: number
   declare followers: number
   declare genres: string[]
@@ -49,6 +50,10 @@ export class SpotifyDatum extends Model<
       id: {
         type: DataTypes.STRING,
         primaryKey: true
+      },
+      spotify_id: {
+        type: DataTypes.STRING,
+        allowNull:false
       },
       popularity: {
         type: DataTypes.INTEGER.UNSIGNED,

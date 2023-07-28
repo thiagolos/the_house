@@ -22,6 +22,7 @@ export class TopTrack extends Model<
   InferCreationAttributes<TopTrack, {omit: TopTrackAssociations}>
 > {
   declare id: string
+  declare spotify_id: string
   declare name: string
   declare release_date: string
   declare popularity: number
@@ -44,8 +45,12 @@ export class TopTrack extends Model<
   static initModel(sequelize: Sequelize): typeof TopTrack {
     TopTrack.init({
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         primaryKey: true
+      },
+      spotify_id: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       name: {
         type: DataTypes.STRING,

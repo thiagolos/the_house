@@ -13,11 +13,10 @@ const fetchSpotifyData = async () => {
   try {
     const response = await fetch(`${baseUrl}?ids=${artistIdList.join()}`, {
       headers: {
-        Authorization: "Bearer BQBKpui7clLqCIm3DraW-UOEgZCP6ZflRNwtyU23i7H3VPEi0fMR0u-ZyMkQzlANaF3xLBsaWNtxFAnJ86W7yEY_Px7EK1svxUatysnrnKVslHElkMY"
+        Authorization: "Bearer BQD-VSXeT54iIJrlEUtKpFeRXerQNYUFAWOlHYfCVpKLlFDsKk7GszvkWg8COCreb73y71JsBYq23qw9RYbPxqRfbUM00Vz7580Tcx2-Vr_kJewqcl0"
       },
     });
     const data = await response.json();
-    console.log("DATA::",data)
     return data;
   } catch (err) {
     console.log(err);
@@ -30,9 +29,9 @@ export const postSpotifyData = async (ctx:any) => {
     const spotifyApiData = await fetchSpotifyData();
     for (const element of spotifyApiData.artists) {
       if (element != null) {
-        console.log("ARTIST ELEMENT::",element);
         await models.SpotifyDatum.create({
           id: v4(),
+          spotify_id: element.id,
           popularity: element.popularity,
           followers: element.followers.total,
           genres: element.genres,
@@ -52,14 +51,13 @@ export const postSpotifyData = async (ctx:any) => {
   }
 }
 
-
 // Logic to fetch top track data for all artists and post to our database
 
 const fetchTopTracks = async (artistId: string) => {
   try {
     const response = await fetch(`${baseUrl}${artistId}/top-tracks?market=GB`, {
       headers: {
-        Authorization: "Bearer BQAobfcOG3tb2dGfDnBkObx3rNaup47PxSS0DhdSJR3-zeudwEsibZIpdFJRGeZE8zm9fX2oPyCpMbc8nBOoVtXjjX_RFbjeqFkRvcluqvBftKwWp18"
+        Authorization: "Bearer BQD-VSXeT54iIJrlEUtKpFeRXerQNYUFAWOlHYfCVpKLlFDsKk7GszvkWg8COCreb73y71JsBYq23qw9RYbPxqRfbUM00Vz7580Tcx2-Vr_kJewqcl0"
       },
     });
     const data = await response.json();
@@ -77,6 +75,7 @@ export const postTracksData = async (ctx: any) => {
       await Promise.all(topTrackData.tracks.map((track:any) => {
         const dataToSend = {
           id: v4(),
+          spotify_id: track.album.artists[0].id,
           name: track.name,
           release_date: track.album.release_date,
           popularity: track.popularity,
@@ -89,7 +88,29 @@ export const postTracksData = async (ctx: any) => {
     });
     ctx.status = 200;
   } catch (err) {
+    ctx.status = 500;
     console.log(err)
+    return err;
+  }
+}
+
+export const postArtistData = async (ctx:any) => {
+  try {
+    const spotifyApiData = await fetchSpotifyData();
+
+    for (const element of spotifyApiData.artists) {
+      if (element != null) {
+        await models.Artist.create({
+          id: v4(),
+          spotifyId: element.id,
+          name: element.name,
+        });
+      }
+    }
+    ctx.status = 200;
+  } catch (err) {
+    ctx.status = 500;
+    console.log(err);
     return err;
   }
 }

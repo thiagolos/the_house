@@ -27,8 +27,9 @@ export class Artist extends Model<
   InferAttributes<Artist, {omit: ArtistAssociations}>,
   InferCreationAttributes<Artist, {omit: ArtistAssociations}>
 > {
-  declare id: CreationOptional<string>
+  declare id: string
   declare spotifyId: string
+  declare name: string
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
 
@@ -70,6 +71,10 @@ export class Artist extends Model<
         primaryKey: true
       },
       spotifyId: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      name: {
         type: DataTypes.STRING,
         allowNull: false
       },
