@@ -28,7 +28,7 @@ export class Artist extends Model<
   InferCreationAttributes<Artist, {omit: ArtistAssociations}>
 > {
   declare id: string
-  declare spotifyId: string
+  declare spotify_id: string
   declare name: string
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
@@ -70,7 +70,7 @@ export class Artist extends Model<
         type: DataTypes.UUID,
         primaryKey: true
       },
-      spotifyId: {
+      spotify_id: {
         type: DataTypes.STRING,
         allowNull: false
       },

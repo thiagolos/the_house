@@ -13,7 +13,7 @@ const fetchSpotifyData = async () => {
   try {
     const response = await fetch(`${baseUrl}?ids=${artistIdList.join()}`, {
       headers: {
-        Authorization: "Bearer BQD-VSXeT54iIJrlEUtKpFeRXerQNYUFAWOlHYfCVpKLlFDsKk7GszvkWg8COCreb73y71JsBYq23qw9RYbPxqRfbUM00Vz7580Tcx2-Vr_kJewqcl0"
+        Authorization: "Bearer BQASL6Or6Rln2bBg_rdMjchqgKwplH1XpIR2eJZRCAVrHmFhjkKbJMuCJbSYbTGkdiZiUgIjZwJNSoUV_UU07OAv88s-lYCP-bOZ9V-b9kJstekqlp0"
       },
     });
     const data = await response.json();
@@ -57,7 +57,7 @@ const fetchTopTracks = async (artistId: string) => {
   try {
     const response = await fetch(`${baseUrl}${artistId}/top-tracks?market=GB`, {
       headers: {
-        Authorization: "Bearer BQD-VSXeT54iIJrlEUtKpFeRXerQNYUFAWOlHYfCVpKLlFDsKk7GszvkWg8COCreb73y71JsBYq23qw9RYbPxqRfbUM00Vz7580Tcx2-Vr_kJewqcl0"
+        Authorization: "Bearer BQASL6Or6Rln2bBg_rdMjchqgKwplH1XpIR2eJZRCAVrHmFhjkKbJMuCJbSYbTGkdiZiUgIjZwJNSoUV_UU07OAv88s-lYCP-bOZ9V-b9kJstekqlp0"
       },
     });
     const data = await response.json();
@@ -94,6 +94,8 @@ export const postTracksData = async (ctx: any) => {
   }
 }
 
+// Logic to post artist data for all artists and post to our database
+
 export const postArtistData = async (ctx:any) => {
   try {
     const spotifyApiData = await fetchSpotifyData();
@@ -102,7 +104,7 @@ export const postArtistData = async (ctx:any) => {
       if (element != null) {
         await models.Artist.create({
           id: v4(),
-          spotifyId: element.id,
+          spotify_id: element.id,
           name: element.name,
         });
       }

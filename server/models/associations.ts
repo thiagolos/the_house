@@ -18,16 +18,16 @@ export function initModels(sequelize: Sequelize) {
     as: 'artist',
     foreignKey: 'artists_id'
   })
-  Artist.hasMany(TopTrack, {
-    as: 'topTracks',
-    foreignKey: 'artists_id'
-  })
   Artist.hasMany(SpotifyDatum, {
     as: 'spotifyData',
     foreignKey: 'artists_id'
   })
   TopTrack.belongsTo(Artist, {
     as: 'artist',
+    foreignKey: 'artists_id'
+  })
+  Artist.hasMany(TopTrack, {
+    as: 'topTracks',
     foreignKey: 'artists_id'
   })
 

@@ -27,7 +27,7 @@ export class SpotifyDatum extends Model<
   declare popularity: number
   declare followers: number
   declare genres: string[]
-  declare images: string[]
+  declare images: Image[]
   declare externalUrls: External_Urls | any
   declare href: string
   declare type: string
