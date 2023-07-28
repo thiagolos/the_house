@@ -1,4 +1,4 @@
-import type { Sequelize, Model } from 'sequelize'
+import type { Sequelize } from 'sequelize'
 import { SpotifyDatum } from './SpotifyDatum'
 import { Artist } from './Artist'
 import { TopTrack } from './TopTrack'
@@ -15,20 +15,19 @@ export function initModels(sequelize: Sequelize) {
   TopTrack.initModel(sequelize)
 
   SpotifyDatum.belongsTo(Artist, {
-    as: 'artist',
-    foreignKey: 'artists_id'
+    foreignKey: 'spotify_id'
   })
-  Artist.hasMany(SpotifyDatum, {
-    as: 'spotifyData',
-    foreignKey: 'artists_id'
-  })
+
   TopTrack.belongsTo(Artist, {
-    as: 'artist',
-    foreignKey: 'artists_id'
+    foreignKey: 'spotify_id'
   })
+  
+  Artist.hasMany(SpotifyDatum, {
+    foreignKey: 'spotify_id'
+  })
+  
   Artist.hasMany(TopTrack, {
-    as: 'topTracks',
-    foreignKey: 'artists_id'
+    foreignKey: 'spotify_id'
   })
 
   return {

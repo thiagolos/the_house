@@ -27,7 +27,7 @@ export class Artist extends Model<
   InferAttributes<Artist, {omit: ArtistAssociations}>,
   InferCreationAttributes<Artist, {omit: ArtistAssociations}>
 > {
-  declare id: string
+  // declare id: string
   declare spotify_id: string
   declare name: string
   declare createdAt: CreationOptional<Date>
@@ -66,13 +66,9 @@ export class Artist extends Model<
 
   static initModel(sequelize: Sequelize): typeof Artist {
     Artist.init({
-      id: {
-        type: DataTypes.UUID,
-        primaryKey: true
-      },
       spotify_id: {
         type: DataTypes.STRING,
-        allowNull: false
+        primaryKey: true
       },
       name: {
         type: DataTypes.STRING,

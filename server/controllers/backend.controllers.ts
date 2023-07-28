@@ -13,7 +13,7 @@ const fetchSpotifyData = async () => {
   try {
     const response = await fetch(`${baseUrl}?ids=${artistIdList.join()}`, {
       headers: {
-        Authorization: "Bearer BQASL6Or6Rln2bBg_rdMjchqgKwplH1XpIR2eJZRCAVrHmFhjkKbJMuCJbSYbTGkdiZiUgIjZwJNSoUV_UU07OAv88s-lYCP-bOZ9V-b9kJstekqlp0"
+        Authorization: "Bearer BQCa50sIbjSnUsYeJIGUXiAROcqR8q4V2GFwYIn6M-geRdBzEDeqENlypN2ROR3UNqUI-zu5SASPmYAHO6TMXZ1geOP0L5xtNoo1q-Vckj3BRxEZjyk"
       },
     });
     const data = await response.json();
@@ -57,7 +57,7 @@ const fetchTopTracks = async (artistId: string) => {
   try {
     const response = await fetch(`${baseUrl}${artistId}/top-tracks?market=GB`, {
       headers: {
-        Authorization: "Bearer BQASL6Or6Rln2bBg_rdMjchqgKwplH1XpIR2eJZRCAVrHmFhjkKbJMuCJbSYbTGkdiZiUgIjZwJNSoUV_UU07OAv88s-lYCP-bOZ9V-b9kJstekqlp0"
+        Authorization: "Bearer BQCa50sIbjSnUsYeJIGUXiAROcqR8q4V2GFwYIn6M-geRdBzEDeqENlypN2ROR3UNqUI-zu5SASPmYAHO6TMXZ1geOP0L5xtNoo1q-Vckj3BRxEZjyk"
       },
     });
     const data = await response.json();
@@ -73,9 +73,10 @@ export const postTracksData = async (ctx: any) => {
     artistIdList.forEach(async (artist) => {
       const topTrackData = await fetchTopTracks(artist);
       await Promise.all(topTrackData.tracks.map((track:any) => {
+        console.log(track.album.artists[0].id);
         const dataToSend = {
           id: v4(),
-          spotify_id: track.album.artists[0].id,
+          spotify_id: artist,
           name: track.name,
           release_date: track.album.release_date,
           popularity: track.popularity,
@@ -94,7 +95,7 @@ export const postTracksData = async (ctx: any) => {
   }
 }
 
-// Logic to post artist data for all artists and post to our database
+// Logic to post data for all artists and post to our database
 
 export const postArtistData = async (ctx:any) => {
   try {
@@ -103,7 +104,6 @@ export const postArtistData = async (ctx:any) => {
     for (const element of spotifyApiData.artists) {
       if (element != null) {
         await models.Artist.create({
-          id: v4(),
           spotify_id: element.id,
           name: element.name,
         });
