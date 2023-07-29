@@ -1,10 +1,14 @@
 <script setup lang='ts'>
-  
+
+  const props = defineProps({
+    listItem: Object
+  })
+
 </script>
 
 <template>
     <div class="artist-card-container">
-      This is the artist card component
+      <img v-if="listItem" :src="listItem.image" alt="">
     </div>
 </template>
 

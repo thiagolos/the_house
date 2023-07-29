@@ -8,6 +8,11 @@ export type Image = {
   width: number;
 }
 
+export type NameAndImageType = {
+  name: string;
+  image: string;
+}
+
 export type Artist = {
   spotify_id: string;
   name: string;
