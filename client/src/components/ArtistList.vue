@@ -32,4 +32,15 @@
     .artist-list::-webkit-scrollbar {
       display: none;
     }
+    .artist-list-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+    }
+    .list-title {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 3em;
+      font-weight: bold;
+    }
 </style>

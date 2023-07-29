@@ -12,7 +12,6 @@ async function getArtistImagesAndNames() {
         image: element.SpotifyData[0].images[1].url
       })
     }
-    // console.log(namesAndImages);
     return namesAndImages;
   } catch (err) {
     console.log("Error fetching data from database::",err);
