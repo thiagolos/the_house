@@ -22,15 +22,12 @@
 </template>
 
 <style lang='postcss' scoped>
-    .artist-list-container {
-      height: 45vh;
-    }
-
     .artist-list {
       display: flex;
       gap: 1em;
       width: 100%;
       overflow: scroll;
+      height: 33vh;
     }
     .artist-list::-webkit-scrollbar {
       display: none;
