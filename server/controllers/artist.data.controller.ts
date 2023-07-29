@@ -16,7 +16,7 @@ async function getArtistsAndSpotify (ctx:any) {
   }
 }
 
-async function getArtistTopTracks (ctx:any) {
+async function getArtistTracks (ctx:any) {
   try {
     const response = await models.TopTrack.findAll({
       where: {
@@ -29,12 +29,35 @@ async function getArtistTopTracks (ctx:any) {
   } catch (err) {
     ctx.status = 500;
     ctx.body = err;
-    console.log(err);
+    console.log('error in getArtistTopTracks::',err);
+    return err;
+  }
+}
+
+async function getSpotifyAndTracks (ctx:any) {
+  try {
+    const response = await models.Artist.findAll({
+      where: {
+        spotify_id: ctx.params.id
+      },
+      include: [
+        { model: models.SpotifyDatum },
+        { model: models.TopTrack }
+      ]
+    });
+    ctx.status = 200;
+    ctx.body = response;
+    return response;
+  } catch (err) {
+    ctx.status = 500;
+    ctx.body = err;
+    console.log('error in getSpotifyAndTopTracks::',err);
     return err;
   }
 }
 
 export default { 
   getArtistsAndSpotify,
-  getArtistTopTracks
+  getArtistTracks,
+  getSpotifyAndTracks
 }

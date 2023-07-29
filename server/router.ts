@@ -12,6 +12,8 @@ import artistController from './controllers/artist.data.controller'
 // router.get('/test', postArtistData);
 
 router.get('/artistsAndSpotify', artistController.getArtistsAndSpotify);
-router.get('/topTracks/:id', artistController.getArtistTopTracks);
+router.get('/topTracks/:id', artistController.getArtistTracks);
+router.get('/spotifyAndTracks/:id', artistController.getSpotifyAndTracks);
+
 
 export default router;
