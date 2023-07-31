@@ -93,6 +93,10 @@
       font-weight: bold;
       color: white;
     }
+
+    .top-tracks-container span {
+      font-size: 2em;
+    }
     .artist-name {
       font-size: 3.5em;
       text-align: center;
