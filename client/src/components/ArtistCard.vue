@@ -52,6 +52,7 @@
 
   .artist-image {
     height: 280px;
+    border-radius: 3%;
   }
 
   .name {
