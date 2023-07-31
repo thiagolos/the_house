@@ -16,12 +16,14 @@
     @mouseleave="isHovered = false"
   >
     <div class="image-wrapper">
-      <img
-        v-if="listItem"
-        class="artist-image"
-        :src="listItem.image"
-        alt="Artist Image"
-      >
+      <router-link :to="`/artistDetails/${props.listItem?.spotify_id}`">
+        <img
+          v-if="listItem"
+          class="artist-image"
+          :src="listItem.image"
+          alt="Artist Image"
+        >
+      </router-link>
     </div>
 
     <p

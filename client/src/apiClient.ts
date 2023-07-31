@@ -9,6 +9,7 @@ async function getArtistImagesAndNames() {
     for (const element of response.data) {
       namesAndImages.push({
         name: element.name,
+        spotify_id: element.spotify_id,
         image: element.SpotifyData[0].images[1].url
       })
     }
@@ -19,11 +20,11 @@ async function getArtistImagesAndNames() {
   }
 }
 
-async function getOneArtistDetails(): Promise<SpotifyAndTracks> {
+async function getOneArtistDetails(id:string): Promise<SpotifyAndTracks> {
   try {
-    const response = await axios.get(`${baseUrl}spotifyAndTracks/3JYp3dC5wTBWagBRR5fjpk`)
+    const response = await axios.get(`${baseUrl}spotifyAndTracks/${id}`)
     const artist = response.data[0];
-    const featuredArtist: SpotifyAndTracks = {
+    const artistDetails: SpotifyAndTracks = {
       spotify_id: artist.spotify_id,
       name: artist.name,
       createdAt: artist.createdAt,
@@ -31,7 +32,7 @@ async function getOneArtistDetails(): Promise<SpotifyAndTracks> {
       SpotifyData: artist.SpotifyData,
       TopTracks: artist.TopTracks
     }
-    return featuredArtist;
+    return artistDetails;
   } catch (err) {
     console.log("Error fetching data from database::",err);
     throw err

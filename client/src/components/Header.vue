@@ -4,15 +4,17 @@
 
 <template>
   <div class="header-container">
-    <div class="logo">
-      THE HOUSE uk
-    </div>
+    <router-link style="text-decoration: none;" to="/">
+      <div class="logo">
+        THE HOUSE uk
+      </div>
+    </router-link>
   </div>
 </template>
 
 <style lang='postcss' scoped>
   .header-container {
-    height: 5vh;
+    height: 6vh;
     border-bottom: 1px solid white;
     margin-bottom: 2em;
   }
@@ -26,4 +28,5 @@
     font-weight: bold;
     font-family: 'Reenie Beanie', cursive;
   }
+
 </style>

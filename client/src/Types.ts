@@ -10,6 +10,7 @@ export type Image = {
 
 export type NameAndImageType = {
   name: string;
+  spotify_id: string;
   image: string;
 }
 

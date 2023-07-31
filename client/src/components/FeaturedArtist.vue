@@ -5,12 +5,13 @@
 
   const artistInfo = ref<SpotifyAndTracks | null>(null);
 
-  apiClient.getOneArtistDetails().then((data: SpotifyAndTracks) => artistInfo.value = data);
+  apiClient.getOneArtistDetails("3JYp3dC5wTBWagBRR5fjpk").then((data: SpotifyAndTracks) => artistInfo.value = data);
 
 </script>
 
 <template>
     <div class="featured-artist-container">
+
       <div class="hero-info-container">
         <div class="artist-name" v-if="artistInfo">Featured Artist 
           <br><br> 
@@ -18,33 +19,36 @@
           <br><br> 
           Popularity Score: <strong>{{ artistInfo.SpotifyData[0].popularity }}</strong>
         </div>
-        <img class="hero-image" v-if="artistInfo" :src="artistInfo.SpotifyData[0].images[0].url" alt="Featured Artist">
+        <router-link :to="`./artistDetails/${artistInfo?.spotify_id}`">
+          <img class="hero-image" v-if="artistInfo" :src="artistInfo.SpotifyData[0].images[0].url" alt="Featured Artist">
+        </router-link>
       </div>
+
       <div class="top-tracks-container">
         Top Tracks
         <div class="track-container">
           <img class="track-image" v-if="artistInfo" :src="artistInfo.TopTracks[0].images[2].url"/>
           {{ artistInfo?.TopTracks[0].name }} | Popularity Score: <span>{{ artistInfo?.TopTracks[0].popularity }}</span>
-          <audio controls>
-            <source src='https://p.scdn.co/mp3-preview/212a6ee65ae82331273e0e29faeb4ceea629a71c?cid=ca95b1053b774436a3a2ad9cb39f540e' type="audio/mpeg">
+          <audio controls v-if="artistInfo">
+            <source :src="artistInfo.TopTracks[0].preview_url" type="audio/mpeg">
           </audio>
-          <!-- {{ artistInfo?.TopTracks[0].preview_url }} -->
         </div>
         <div class="track-container">
           <img class="track-image" v-if="artistInfo" :src="artistInfo.TopTracks[1].images[2].url"/>
           {{ artistInfo?.TopTracks[1].name }} | Popularity Score: <span>{{ artistInfo?.TopTracks[1].popularity }}</span>
-          <audio controls>
-            <source src={artistInfo?.TopTracks[1].preview_url} type="audio/mpeg">
+          <audio controls v-if="artistInfo">
+            <source :src="artistInfo?.TopTracks[1].preview_url" type="audio/mpeg">
           </audio>
         </div>
         <div class="track-container">
           <img class="track-image" v-if="artistInfo" :src="artistInfo.TopTracks[2].images[2].url"/>
           {{ artistInfo?.TopTracks[2].name }} | Popularity Score: <span>{{ artistInfo?.TopTracks[2].popularity }}</span>
-          <audio controls>
-            <source src={artistInfo?.TopTracks[2].preview_url} type="audio/mpeg">
+          <audio controls v-if="artistInfo">
+            <source :src="artistInfo?.TopTracks[2].preview_url" type="audio/mpeg">
           </audio>
         </div>
       </div>
+
     </div>
 </template>
 
@@ -76,6 +80,10 @@
       gap: 0.5em;
     }
 
+    audio {
+      height: 1em;
+      width: 10em;
+    }
     .hero-info-container {
       display: flex;
       justify-content: space-evenly;
