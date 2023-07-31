@@ -3,7 +3,8 @@
   import { useRoute } from 'vue-router';
   import apiClient from '@/apiClient';
   import { SpotifyAndTracks } from '@/Types';
-  import { ref, watch } from 'vue';
+  import { ref} from 'vue';
+  import SpotifyData from '@/components/SpotifyData.vue';
 
   const route = useRoute();
 
@@ -17,17 +18,26 @@
 
 <template>
   <div class="main-container">
+
     <Header />
+
     <div class="artist-details-container">
+
       <div class="artist-banner">
         {{ artist?.name }}
         <img class="artist-image" :src="artist?.SpotifyData[0].images[0].url"/>
         Popularity Score: <strong>{{ artist?.SpotifyData[0].popularity }}</strong>
       </div>
+
       <div class="social-data-container">
+
         <div class="platform-toolbar">
           <a class="btn-wrapper" @click="platformChoice = 'Spotify'"><div class="btn" >Spotify</div></a>
           <a class="btn-wrapper" @click="platformChoice = 'Instagram'"><div class="btn" >Instagram</div></a>
+        </div>
+
+        <div v-if="platformChoice==='Spotify'">
+          <SpotifyData v-if="artist" :artistId="artist.spotify_id"/>
         </div>
       </div>
     </div>

@@ -44,7 +44,7 @@
       display: flex;
       justify-content: center;
       width: 100%;
-      border-bottom: 2px solid white;
+      border-bottom: 1px solid white;
       font-family: 'Reenie Beanie', cursive;
       font-size: 3.5em;
       font-weight: bold;
