@@ -28,6 +28,8 @@
       width: 100%;
       overflow: scroll;
       height: 33vh;
+      align-items: flex-end;
+      padding-bottom: 1em;
     }
     .artist-list::-webkit-scrollbar {
       display: none;
@@ -40,7 +42,8 @@
     }
     .list-title {
       font-family: 'Reenie Beanie', cursive;
-      font-size: 3em;
+      font-size: 3.5em;
       font-weight: bold;
+      color: rgb(255, 255, 255);
     }
 </style>

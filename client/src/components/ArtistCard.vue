@@ -10,13 +10,25 @@
 </script>
 
 <template>
-  <div class="artist-card-container" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-
+  <div
+    class="artist-card-container"
+    @mouseenter="isHovered = true"
+    @mouseleave="isHovered = false"
+  >
     <div class="image-wrapper">
-      <img class="artist-image" v-if="listItem" :src="listItem.image" alt="Artist Image"/>
-     </div>
+      <img
+        v-if="listItem"
+        class="artist-image"
+        :src="listItem.image"
+        alt="Artist Image"
+      >
+    </div>
 
-    <p v-if="listItem" class="name" :style="{ opacity: isHovered ? 1 : 0 }">
+    <p
+      v-if="listItem"
+      class="name"
+      :style="{ opacity: isHovered ? 1 : 0 }"
+    >
       {{ listItem.name }}
     </p>
   </div>
@@ -25,10 +37,10 @@
 <style lang="postcss" scoped>
   .artist-card-container {
     position: relative;
+    height: 280px;
   }
 
   .image-wrapper {
-    /* Apply the blur effect when the container is hovered */
     filter: blur(0);
     transition: filter 0.5s;
   }
@@ -38,13 +50,17 @@
     cursor: pointer;
   }
 
+  .artist-image {
+    height: 280px;
+  }
+
   .name {
     display: flex;
     position: relative;
     justify-content: center;
     text-align: center;
     color: rgb(0, 0, 0);
-    bottom: 250px;
+    bottom: 200px;
     opacity: 0;
     transition: opacity 0.5s;
     font-size: 3.5em;
@@ -56,4 +72,5 @@
   .artist-card-container:hover .name {
     opacity: 1;
   }
+  
 </style>

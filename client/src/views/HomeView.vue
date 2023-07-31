@@ -16,5 +16,8 @@
   .main-container{
     height: 95vh;
     width: 95vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 </style>

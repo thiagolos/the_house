@@ -77,7 +77,6 @@ export const postTracksData = async (ctx: any) => {
     artistIdList.forEach(async (artist) => {
       const topTrackData = await fetchTopTracks(artist);
       await Promise.all(topTrackData.tracks.map((track:any) => {
-        console.log(track.album.artists[0].id);
         const dataToSend = {
           id: v4(),
           spotify_id: artist,
