@@ -28,16 +28,16 @@ const props = defineProps({
   }
 
   .track-card-container {
-    border: 1px solid white;
     display: flex;
     color: white;
-    border-radius: 10px;
     font-family: 'Reenie Beanie', cursive;
     font-size: 1.8em;
     width: 30vw;
     text-align: center;
     justify-content: center; 
     font-weight: bold;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed white;
   }
 
   audio {

@@ -39,6 +39,9 @@
         <div v-if="platformChoice==='Spotify'">
           <SpotifyData v-if="artist" :artistId="artist.spotify_id"/>
         </div>
+        <div class="work-in-progress" v-else>
+          We are working to bring you this feature soon...
+        </div>
       </div>
     </div>
   </div>
@@ -51,6 +54,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+  }
+
+  .work-in-progress {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 3em;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 50vh;
   }
 
   .social-data-container {
@@ -66,6 +78,7 @@
     justify-content: space-evenly;
     padding-bottom: 1em;
     padding-top: 0.5em;
+    margin-bottom: 1em;
   }
   .artist-details-container {
     display: flex;
