@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SpotifyDatum = void 0;
+exports.TopTrack = void 0;
 const sequelize_1 = require("sequelize");
-class SpotifyDatum extends sequelize_1.Model {
+class TopTrack extends sequelize_1.Model {
     static initModel(sequelize) {
-        SpotifyDatum.init({
+        TopTrack.init({
             id: {
                 type: sequelize_1.DataTypes.STRING,
                 primaryKey: true,
@@ -13,36 +13,28 @@ class SpotifyDatum extends sequelize_1.Model {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
             },
+            name: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: false,
+            },
+            release_date: {
+                type: sequelize_1.DataTypes.DATEONLY,
+                allowNull: false,
+            },
             popularity: {
-                type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+                type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
             },
-            followers: {
-                type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
-                allowNull: false,
+            preview_url: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true,
             },
-            genres: {
+            artists: {
                 type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.STRING),
                 allowNull: false,
             },
             images: {
                 type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.JSON),
-                allowNull: false,
-            },
-            externalUrls: {
-                type: sequelize_1.DataTypes.JSON,
-                allowNull: false,
-            },
-            href: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: false,
-            },
-            type: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: false,
-            },
-            uri: {
-                type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
             },
             createdAt: {
@@ -54,7 +46,7 @@ class SpotifyDatum extends sequelize_1.Model {
         }, {
             sequelize,
         });
-        return SpotifyDatum;
+        return TopTrack;
     }
 }
-exports.SpotifyDatum = SpotifyDatum;
+exports.TopTrack = TopTrack;

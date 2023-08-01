@@ -12,25 +12,21 @@ function initModels(sequelize) {
     Artist_1.Artist.initModel(sequelize);
     TopTrack_1.TopTrack.initModel(sequelize);
     SpotifyDatum_1.SpotifyDatum.belongsTo(Artist_1.Artist, {
-        as: 'artist',
-        foreignKey: 'artists_id'
-    });
-    Artist_1.Artist.hasMany(TopTrack_1.TopTrack, {
-        as: 'topTracks',
-        foreignKey: 'artists_id'
-    });
-    Artist_1.Artist.hasMany(SpotifyDatum_1.SpotifyDatum, {
-        as: 'spotifyData',
-        foreignKey: 'artists_id'
+        foreignKey: "spotify_id",
     });
     TopTrack_1.TopTrack.belongsTo(Artist_1.Artist, {
-        as: 'artist',
-        foreignKey: 'artists_id'
+        foreignKey: "spotify_id",
+    });
+    Artist_1.Artist.hasMany(SpotifyDatum_1.SpotifyDatum, {
+        foreignKey: "spotify_id",
+    });
+    Artist_1.Artist.hasMany(TopTrack_1.TopTrack, {
+        foreignKey: "spotify_id",
     });
     return {
         SpotifyDatum: SpotifyDatum_1.SpotifyDatum,
         Artist: Artist_1.Artist,
-        TopTrack: TopTrack_1.TopTrack
+        TopTrack: TopTrack_1.TopTrack,
     };
 }
 exports.initModels = initModels;

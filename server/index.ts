@@ -1,9 +1,9 @@
-import Koa from 'koa';
-import cors from '@koa/cors';
-import bodyParser from 'koa-bodyparser';
+import Koa from "koa";
+import cors from "@koa/cors";
+import bodyParser from "koa-bodyparser";
 
-import sequelize from './db'
-import router from './router'
+import sequelize from "./db";
+import router from "./router";
 
 const app = new Koa();
 
@@ -15,6 +15,6 @@ app.use(router.routes());
   await sequelize.sync();
   const port = 3000;
   app.listen(port);
-  console.log('connected to the database');
+  console.log("connected to the database");
   console.log(`live on port ${port}`);
 })();

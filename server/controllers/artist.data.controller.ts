@@ -1,9 +1,10 @@
-import models  from "../models/index";
+import models from "../models/index";
+import Koa from 'koa';
 
-async function getArtistsAndSpotify (ctx:any) {
+async function getArtistsAndSpotify(ctx: Koa.Context) {
   try {
     const response = await models.Artist.findAll({
-      include: { model: models.SpotifyDatum }
+      include: { model: models.SpotifyDatum },
     });
     ctx.status = 200;
     ctx.body = response;
@@ -11,17 +12,17 @@ async function getArtistsAndSpotify (ctx:any) {
   } catch (err) {
     ctx.status = 500;
     ctx.body = err;
-    console.log('error in getArtistsAndSpotify::',err);
+    console.log("error in getArtistsAndSpotify::", err);
     return err;
   }
 }
 
-async function getArtistTracks (ctx:any) {
+async function getArtistTracks(ctx: Koa.Context) {
   try {
     const response = await models.TopTrack.findAll({
       where: {
-        spotify_id: ctx.params.id
-      }
+        spotify_id: ctx.params.id,
+      },
     });
     ctx.status = 200;
     ctx.body = response;
@@ -29,21 +30,18 @@ async function getArtistTracks (ctx:any) {
   } catch (err) {
     ctx.status = 500;
     ctx.body = err;
-    console.log('error in getArtistTopTracks::',err);
+    console.log("error in getArtistTopTracks::", err);
     return err;
   }
 }
 
-async function getSpotifyAndTracks (ctx:any) {
+async function getSpotifyAndTracks(ctx: Koa.Context) {
   try {
     const response = await models.Artist.findAll({
       where: {
-        spotify_id: ctx.params.id
+        spotify_id: ctx.params.id,
       },
-      include: [
-        { model: models.SpotifyDatum },
-        { model: models.TopTrack }
-      ]
+      include: [{ model: models.SpotifyDatum }, { model: models.TopTrack }],
     });
     ctx.status = 200;
     ctx.body = response;
@@ -51,13 +49,13 @@ async function getSpotifyAndTracks (ctx:any) {
   } catch (err) {
     ctx.status = 500;
     ctx.body = err;
-    console.log('error in getSpotifyAndTopTracks::',err);
+    console.log("error in getSpotifyAndTopTracks::", err);
     return err;
   }
 }
 
-export default { 
+export default {
   getArtistsAndSpotify,
   getArtistTracks,
-  getSpotifyAndTracks
-}
+  getSpotifyAndTracks,
+};

@@ -1,5 +1,5 @@
-import { initModels } from './associations';
-import sequelize from '../db';
+import { initModels } from "./associations";
+import sequelize from "../db";
 
 const models = initModels(sequelize);
 

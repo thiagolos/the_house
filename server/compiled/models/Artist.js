@@ -5,22 +5,22 @@ const sequelize_1 = require("sequelize");
 class Artist extends sequelize_1.Model {
     static initModel(sequelize) {
         Artist.init({
-            id: {
-                type: sequelize_1.DataTypes.UUID,
-                primaryKey: true
-            },
-            spotifyId: {
+            spotify_id: {
                 type: sequelize_1.DataTypes.STRING,
-                allowNull: false
+                primaryKey: true,
+            },
+            name: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: false,
             },
             createdAt: {
-                type: sequelize_1.DataTypes.DATE
+                type: sequelize_1.DataTypes.DATE,
             },
             updatedAt: {
-                type: sequelize_1.DataTypes.DATE
-            }
+                type: sequelize_1.DataTypes.DATE,
+            },
         }, {
-            sequelize
+            sequelize,
         });
         return Artist;
     }
