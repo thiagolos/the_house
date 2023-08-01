@@ -1,11 +1,11 @@
-import axios from 'axios';
-import type { External_Urls, Image, Artist, Track, SpotifyData, ArtistAndSpotify, SpotifyAndTracks, NameAndImageType } from './Types';
-const baseUrl: string = 'http://localhost:3000/';
+import axios from 'axios'
+import type { SpotifyAndTracks, NameAndImageType } from './Types'
+const baseUrl: string = 'http://localhost:3000/'
 
 async function getArtistImagesAndNames() {
   try {
-    const response = await axios.get(`${baseUrl}artistsAndSpotify`);
-    const namesAndImages: NameAndImageType[] = [];
+    const response = await axios.get(`${baseUrl}artistsAndSpotify`)
+    const namesAndImages: NameAndImageType[] = []
     for (const element of response.data) {
       namesAndImages.push({
         name: element.name,
@@ -13,17 +13,17 @@ async function getArtistImagesAndNames() {
         image: element.SpotifyData[0].images[1].url
       })
     }
-    return namesAndImages;
+    return namesAndImages
   } catch (err) {
-    console.log("Error fetching data from database::",err);
-    return [];
+    console.log('Error fetching data from database::', err)
+    return []
   }
 }
 
-async function getOneArtistDetails(id:string): Promise<SpotifyAndTracks> {
+async function getOneArtistDetails(id: string): Promise<SpotifyAndTracks> {
   try {
     const response = await axios.get(`${baseUrl}spotifyAndTracks/${id}`)
-    const artist = response.data[0];
+    const artist = response.data[0]
     const artistDetails: SpotifyAndTracks = {
       spotify_id: artist.spotify_id,
       name: artist.name,
@@ -32,11 +32,11 @@ async function getOneArtistDetails(id:string): Promise<SpotifyAndTracks> {
       SpotifyData: artist.SpotifyData,
       TopTracks: artist.TopTracks
     }
-    return artistDetails;
+    return artistDetails
   } catch (err) {
-    console.log("Error fetching data from database::",err);
+    console.log('Error fetching data from database::', err)
     throw err
   }
 }
 
-export default { getArtistImagesAndNames, getOneArtistDetails };
+export default { getArtistImagesAndNames, getOneArtistDetails }
