@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { SpotifyAndTracks } from '@/Types'
+import { SpotifyAndTracks, Track } from '@/Types'
 import apiClient from '../apiClient'
 
 const artistInfo = ref<SpotifyAndTracks | null>(null)
+const trackList = ref<Track[]>([])
 
-apiClient
-  .getOneArtistDetails('3JYp3dC5wTBWagBRR5fjpk')
-  .then((data: SpotifyAndTracks) => (artistInfo.value = data))
+console.log(trackList)
+
+apiClient.getOneArtistDetails('7IrBqZo6diq3hV3GpUhrs2').then((data: SpotifyAndTracks) => {
+  artistInfo.value = data
+  trackList.value = data.TopTracks.sort((trackA, trackB) => trackB.popularity - trackA.popularity)
+})
 </script>
 
 <template>
@@ -31,28 +35,31 @@ apiClient
 
     <div class="top-tracks-container">
       Top Tracks
-      <div class="track-container">
-        <img class="track-image" v-if="artistInfo" :src="artistInfo.TopTracks[0].images[2].url" />
-        {{ artistInfo?.TopTracks[0].name }} | Popularity Score:
-        <span>{{ artistInfo?.TopTracks[0].popularity }}</span>
-        <audio controls v-if="artistInfo">
-          <source :src="artistInfo.TopTracks[0].preview_url" type="audio/mpeg" />
+
+      <div class="track-container" v-if="trackList.length > 0">
+        <img class="track-image" :src="trackList[0].images[2].url" />
+        {{ trackList[0].name }} | Popularity Score:
+        <span>{{ trackList[0].popularity }}</span>
+        <audio controls>
+          <source :src="trackList[0].preview_url" type="audio/mpeg" />
         </audio>
       </div>
-      <div class="track-container">
-        <img class="track-image" v-if="artistInfo" :src="artistInfo.TopTracks[1].images[2].url" />
-        {{ artistInfo?.TopTracks[1].name }} | Popularity Score:
-        <span>{{ artistInfo?.TopTracks[1].popularity }}</span>
-        <audio controls v-if="artistInfo">
-          <source :src="artistInfo?.TopTracks[1].preview_url" type="audio/mpeg" />
+
+      <div class="track-container" v-if="trackList.length > 1">
+        <img class="track-image" :src="trackList[1].images[2].url" />
+        {{ trackList[1].name }} | Popularity Score:
+        <span>{{ trackList[1].popularity }}</span>
+        <audio controls>
+          <source :src="trackList[1].preview_url" type="audio/mpeg" />
         </audio>
       </div>
-      <div class="track-container">
-        <img class="track-image" v-if="artistInfo" :src="artistInfo.TopTracks[2].images[2].url" />
-        {{ artistInfo?.TopTracks[2].name }} | Popularity Score:
-        <span>{{ artistInfo?.TopTracks[2].popularity }}</span>
-        <audio controls v-if="artistInfo">
-          <source :src="artistInfo?.TopTracks[2].preview_url" type="audio/mpeg" />
+
+      <div class="track-container" v-if="trackList.length > 2">
+        <img class="track-image" :src="trackList[2].images[2].url" />
+        {{ trackList[2].name }} | Popularity Score:
+        <span>{{ trackList[2].popularity }}</span>
+        <audio controls>
+          <source :src="trackList[2].preview_url" type="audio/mpeg" />
         </audio>
       </div>
     </div>
@@ -106,7 +113,7 @@ audio {
   font-size: 2em;
 }
 .artist-name {
-  font-size: 3.5em;
+  font-size: 3em;
   text-align: center;
   padding-right: 1em;
 }

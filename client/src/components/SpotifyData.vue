@@ -113,7 +113,7 @@ strong {
   display: flex;
   flex-direction: column;
   gap: 1.5em;
-  height: 78vh;
+  height: 76vh;
   overflow: scroll;
   text-align: center;
   padding-top: 1em;

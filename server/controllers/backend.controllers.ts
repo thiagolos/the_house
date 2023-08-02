@@ -7,7 +7,6 @@ import { Artist, Track } from "../Types";
 
 const artistIdList: string[] = [
   "14rchXSv5I3gxgE6qNuMN2",
-  "319gCjNoBJc8AaIPkWhCKH",
   "4CCjWYtowoZyWAl03Iih5P",
   "59fXT8REPhYypqMiXMxSKs",
   "3fRPt5kKn2lETY48z6kigv",
@@ -26,6 +25,7 @@ const artistIdList: string[] = [
   "5VFbrnGdINL3hcSOluMsCj",
   "0q8eApZJs5WDBxayY9769C",
   "2CMGIUxJXzUIEGt2jLpM5z",
+  "319gCjNoBJc8AaIPkWhCKH"
 ];
 
 // Following authHeader in the format: [Bearer authToken]. authToken lasts one hour, needs to be gotten via POST to spotify API

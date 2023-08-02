@@ -5,6 +5,7 @@ import { SpotifyAndTracks } from '@/Types'
 import { ref } from 'vue'
 import SpotifyData from '@/components/SpotifyData.vue'
 import HeaderBar from '@/components/HeaderBar.vue'
+import InstagramData from '@/components/InstagramData.vue'
 
 const route = useRoute()
 
@@ -39,7 +40,9 @@ apiClient.getOneArtistDetails(route.params.id.toString()).then((data) => (artist
         <div v-if="platformChoice === 'Spotify'">
           <SpotifyData v-if="artist" :artistId="artist.spotify_id" />
         </div>
-        <div class="work-in-progress" v-else>We are working to bring you this feature soon...</div>
+        <div v-else-if="platformChoice === 'Instagram'">
+          <InstagramData />
+        </div>
       </div>
     </div>
   </div>
