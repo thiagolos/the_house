@@ -27,7 +27,7 @@ The House is an application designed to track Spotify metrics for a curated list
   <img width="1920" alt="Screenshot 2023-08-25 at 18 25 36" src="https://github.com/thiagolos/the_house/assets/128632331/97a3fc0d-926a-4424-a181-9be941b65c59">
 - **Artist Details Page** All artists have their own detailed feature page.
   <img width="1920" alt="Screenshot 2023-08-25 at 18 25 45" src="https://github.com/thiagolos/the_house/assets/128632331/4f12c7eb-5148-4332-a71d-68cd3d910635">
-- **Embedded Song Previews** Listen to snippets of artists most popular songs.
+- **Embedded Song Previews:** Listen to snippets of artists most popular songs.
 - **Metric Visualization:** View various metrics like monthly listeners, popularity index, and more in an easy-to-understand format.
 - **Data Updates:** The application has the capability to fetch updated data from the Spotify API, and populate the database automatically.
 
