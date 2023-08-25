@@ -20,6 +20,18 @@ The House is an application designed to track Spotify metrics for a curated list
 ### API
 
 - **Spotify:** Integration with the Spotify API allows access to artist-related data, enabling the application to fetch and display metrics.
+- 
+## Getting Started
+
+To get started with the application, follow these steps:
+
+1. Clone this repository.
+2. Set up the frontend and install its dependencies by navigating to the `/frontend` directory and running `npm install`.
+3. Similarly, set up the backend by going to the `/backend` directory and running `npm install`.
+4. Create a PostgreSQL database for the application and update the connection configuration in the backend's `.env` file.
+5. Obtain Spotify API credentials and update them in the backend's `.env` file.
+6. Start the backend server using `nodemon index.ts` in the `/backend` directory.
+7. Start the frontend development server using `npm run dev` in the `/frontend` directory.
 
 ## Features
 
@@ -30,6 +42,16 @@ The House is an application designed to track Spotify metrics for a curated list
 - **Embedded Song Previews:** Listen to snippets of artists most popular songs.
 - **Metric Visualization:** View various metrics like monthly listeners, popularity index, and more in an easy-to-understand format.
 - **Data Updates:** The application has the capability to fetch updated data from the Spotify API, and populate the database automatically.
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to The House, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or improvement.
+3. Make your changes and commit them with descriptive commit messages.
+4. Push your changes to your forked repository.
+5. Submit a pull request, explaining your changes and their purpose.
 
 ## License
 
