@@ -20,7 +20,7 @@ The House is an application designed to track Spotify metrics for a curated list
 ### API
 
 - **Spotify:** Integration with the Spotify API allows access to artist-related data, enabling the application to fetch and display metrics.
-- 
+
 ## Getting Started
 
 To get started with the application, follow these steps:
